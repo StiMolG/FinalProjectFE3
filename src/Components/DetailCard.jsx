@@ -12,7 +12,7 @@ const DetailCard = () => {
     //As instruções que estão com {''} precisam ser 
     //substituídas com as informações que vem da api
     <>
-      <h1>Detail about Dentist {'Nome do Dentista'} </h1>
+      <h1>Detalle sobre Dentista {'Nome do Dentista'} </h1>
       <section className="card col-sm-12 col-lg-6 container">
         {/* //Na linha seguinte deverá ser feito um teste se a aplicação
         // está em dark mode e deverá utilizar o css correto */}
@@ -28,12 +28,12 @@ const DetailCard = () => {
           </div>
           <div className="col-sm-12 col-lg-6">
             <ul className="list-group">
-              <li className="list-group-item">Nome: {'Nome do Dentista'}</li>
+              <li className="list-group-item">Nombre: {'Nome do Dentista'}</li>
               <li className="list-group-item">
-                Sobrenome: {'Sobrenome do Dentista'}
+                Apellido: {'Sobrenome do Dentista'}
               </li>
               <li className="list-group-item">
-                Usuário: {'Nome de usuário do Dentista'}
+                Usuario: {'Nome de usuário do Dentista'}
               </li>
             </ul>
             <div className="text-center">

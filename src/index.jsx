@@ -1,18 +1,51 @@
 import React from "react";
+import "./index.css";
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
 import ReactDOM from "react-dom/client";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
-import Navbar from "./Components/Navbar";
 import Home from "./Routes/Home";
-import Footer from "./Components/Footer";
-import "./index.css";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-//Lembre-se de configurar suas rotas e seu contexto aqui
+import Detail from "./Routes/Detail";
+import Login from "./Routes/Login";
+import App from "./App";
+import { AppProvider } from "./context/AppContext";
+
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    children: [
+      {
+        path: "/home",
+        element: <Home />,
+      },
+      {
+        path: "/detail",
+        element: <Detail />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      // {
+      //   path: "/posts/:id",
+      //   element: <Login />,
+      // },
+    ]
+  },
+  
+]);
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Navbar />
-    <Home />
-    <Footer />
+    <AppProvider>
+      <RouterProvider router={router} />
+    </AppProvider>
   </React.StrictMode>
 );

@@ -1,5 +1,6 @@
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import Card from "../Components/Card";
+import { AppContext } from "../context/AppContext";
 
 const Home = () => {
 
@@ -9,9 +10,11 @@ const Home = () => {
     //Usando o componente <Card />
   }, []);
 
+  const { theme, toggleTheme } = useContext(AppContext);
+
   return (
     <>
-      <h1>Home</h1>
+      <h1>{theme}</h1>
       <div className="card-grid container">
         <Card />
       </div>

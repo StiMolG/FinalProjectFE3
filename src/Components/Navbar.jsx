@@ -1,7 +1,9 @@
+import { useContext } from "react";
 import styles from "./Navbar.module.css";
-
+import { AppContext } from "../context/AppContext";
 const Navbar = () => {
 
+  const { theme, toggleTheme } = useContext(AppContext);
   return (
     <header className="sticky-top">
       {/* //Na linha seguinte deverá ser feito um teste se a aplicação
@@ -55,6 +57,7 @@ const Navbar = () => {
                  Na linha seguinte deverá ser feito um teste se a aplicação
                  está em dark mode e deverá utilizar o icone ☀ ou 🌙 e btn-dark ou btn-light*/}
                 <button
+                  onClick={toggleTheme}
                   className={`btn btn-light${styles.btnStyle
                     }`}
                 >
