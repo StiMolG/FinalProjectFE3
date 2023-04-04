@@ -17,19 +17,19 @@ import { AppProvider } from "./context/AppContext";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/*",
     element: <App />,
     children: [
       {
-        path: "/home",
+        path: "home",
         element: <Home />,
       },
       {
-        path: "/detail",
+        path: "detail",
         element: <Detail />,
       },
       {
-        path: "/login",
+        path: "login",
         element: <Login />,
       },
       // {

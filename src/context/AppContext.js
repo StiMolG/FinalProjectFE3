@@ -16,27 +16,17 @@ export function AppProvider({children}) {
     user: '',
     password: '',
   });
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState(false);
 
   const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
-  };
-
-  const themeConfig = {
-    light: {
-      backgroundColor: '#FFFFFF',
-      textColor: '#000000',
-    },
-    dark: {
-      backgroundColor: '#000000',
-      textColor: '#FFFFFF',
-    },
+    console.log('theme:', theme)
+    setTheme(!theme);
   };
 
   const providerValue = {store, setStore};
 
   return (
-    <AppContext.Provider value={{providerValue, theme, themeConfig, toggleTheme}}>
+    <AppContext.Provider value={{providerValue, theme, toggleTheme}}>
       {children}
     </AppContext.Provider>
   )
