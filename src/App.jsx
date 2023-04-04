@@ -15,7 +15,7 @@ function App() {
       <div className={`app ${theme ? 'dark' : 'light'}`}>
         <Navbar />
         <main>
-          <Home/>
+          <Outlet/>
         </main>
         <Footer />
       </div>

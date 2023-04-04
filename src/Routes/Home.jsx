@@ -1,22 +1,29 @@
-import { useEffect, useContext } from "react";
+import { useEffect, useState } from "react";
 import Card from "../Components/Card";
-import { AppContext } from "../context/AppContext";
+import dentistApi from "../api/dentistApi";
 
 const Home = () => {
 
+  const [data, setData] = useState([]);
+
+  const getData = async () => {
+    const response = await dentistApi.get();
+    setData(response.data);
+    console.log("API: ", response.data);
+  }
   useEffect(() => {
-    //Nesse useEffect, deverá ser obtido todos os dentistas da API
-    //Armazena-los em um estado para posteriormente fazer um map
-    //Usando o componente <Card />
+    getData();
   }, []);
 
-  const { theme, toggleTheme } = useContext(AppContext);
 
   return (
     <>
-      <h1>{theme}</h1>
+      <h1>Home</h1>
       <div className="card-grid container">
-        <Card />
+        {data.map((item) =>
+         (
+          <Card name={item.name}/>
+        ))}
       </div>
     </>
   );
