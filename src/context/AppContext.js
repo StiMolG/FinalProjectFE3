@@ -1,37 +1,21 @@
-/**
- * Dependencies
- */
-import { createContext, useState } from 'react';
+import { createContext, useReducer, useMemo } from 'react';
+import dentistReducer from '../hooks/dentistReducer';
 
-/**
- * Context
- */
-export const AppContext = createContext();
+export const initialState = {
+  isFetching: false,
+  isDarkMode: false,
+  data: [],
+  favorites: JSON.parse(localStorage.getItem('favorites')) || [],
+};
+export const AppContext = createContext(initialState);
 
-/**
- * Provider Wrapper
- */
 export function AppProvider({children}) {
-  const [store, setStore] = useState({
-    user: '',
-    password: '',
-  });
-  const [theme, setTheme] = useState(false);
-  const [favs, setFavs] = useState(false);
-
-  const toggleTheme = () => {
-    console.log('theme:', theme)
-    setTheme(!theme);
-  };
-  const toggleFavs = () => {
-    console.log('favs:', favs)
-    setFavs(!favs);
-  };
-
-  const providerValue = {store, setStore};
+  
+  const [state, dispatch] = useReducer(dentistReducer, initialState);
+  const value = useMemo(() => [state, dispatch], [state]);
 
   return (
-    <AppContext.Provider value={{providerValue, theme, toggleTheme, favs, toggleFavs}}>
+    <AppContext.Provider value={value}>
       {children}
     </AppContext.Provider>
   )

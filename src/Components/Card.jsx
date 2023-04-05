@@ -1,15 +1,36 @@
 import { NavLink } from "react-router-dom";
+import { useEffect, useReducer } from "react";
 import styles from "./Card.module.css";
-import { AppContext } from "../context/AppContext";
-import { useContext } from "react";
+import dentistReducer from "../hooks/dentistReducer";
+import { useAppContext } from "../hooks/useAppContext";
 
-const Card = ({id, name}) => {
+const Card = ({ props }) => {
+  const [favs, dispatch] = useReducer(dentistReducer, []);
 
-  const { favs, toggleFavs } = useContext(AppContext);
 
-  const changeState = () => {
-    toggleFavs()
-    console.log("Cambio de estado", id, favs)
+  const {
+    state: { favorites },
+    // addFavorite,
+    // removeFavorite,
+  } = useAppContext();
+  useEffect(() => {
+    console.log("entro", props)
+  }, [props]);
+
+  // const [state, dispatch] = useReducer(dentistReducer, []);
+  const isFav = favorites.some(fav => fav.id === props.id);
+  console.log("IS FAV: ", isFav);
+  const changeState = (e) => {
+    e.stopPropagation();
+    // props["favorite"] = true;
+    // Obtener el array actual de favoritos del localStorage
+    const favoritos = JSON.parse(localStorage.getItem('favorites')) || [];
+    // Agregar un nuevo elemento al array
+    favoritos.push(props);
+    localStorage.setItem('favorites', JSON.stringify(favoritos));
+    dispatch({ type: 'ADD_FAVORITE', payload: favoritos });
+    // Actualizar el array de favoritos en el localStorage
+    console.log("Cambio de estado", favs);
   }
   return (
     <>
@@ -25,8 +46,8 @@ const Card = ({id, name}) => {
         <div className={`card-body ${styles.CardBody}`}>
           {/* Na linha seguinte o link deverá utilizar a matricula, nome e sobrenome do dentista
           que vem da API */}
-          <NavLink to={`/dentist/${id}`}>
-            <h5 className={`card-title ${styles.title}`}>{name}</h5>
+          <NavLink to={`/dentist/${props.id}`}>
+            <h5 className={`card-title ${styles.title}`}>{props.name}</h5>
           </NavLink>
         </div>
       </div>

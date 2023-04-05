@@ -2,9 +2,12 @@ import { useContext } from "react";
 import styles from "./Navbar.module.css";
 import { AppContext } from "../context/AppContext";
 import { NavLink } from "react-router-dom";
+import { useAppContext } from "../hooks/useAppContext";
 const Navbar = () => {
 
-  const { theme, toggleTheme } = useContext(AppContext);
+  const { changeTheme,
+    state: { isDarkmode }
+  } = useAppContext();
   return (
     <header className="sticky-top">
       {/* //Na linha seguinte deverá ser feito um teste se a aplicação
@@ -20,7 +23,7 @@ const Navbar = () => {
           <NavLink className="collapse navbar-collapse justify-content-end" to="/home">Home</NavLink>
           <NavLink to="/contact">Contact</NavLink>
           <button
-                  onClick={toggleTheme}
+                  onClick={changeTheme}
                   className={`btn btn-light${styles.btnStyle
                     }`}
                 >
