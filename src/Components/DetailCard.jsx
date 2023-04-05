@@ -1,18 +1,28 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import ScheduleFormModal from "./ScheduleFormModal";
 import styles from "./DetailCard.module.css";
+import { useParams } from "react-router-dom";
+import dentistApi from "../api/dentistApi";
 
-const DetailCard = () => {
+const DetailCard = ({name}) => {
 
+  const params = useParams();
+  console.log("PARAMS: ", params);
+  const [data, setData] = useState([]);
+
+  const getDentist = async () => {
+    const response = await dentistApi.get(params.id);
+    setData(response.data);
+    console.log("API DENTIST: ", response.data);
+  }
   useEffect(() => {
-    //Nesse useEffect, você vai fazer um fetch na api passando o 
-    //id do dentista que está vindo do react-router e carregar os dados em algum estado
+    getDentist();
   }, []);
   return (
     //As instruções que estão com {''} precisam ser 
     //substituídas com as informações que vem da api
     <>
-      <h1>Detalle sobre Dentista {'Nome do Dentista'} </h1>
+      <h1>Detalle sobre Dentista</h1>
       <section className="card col-sm-12 col-lg-6 container">
         {/* //Na linha seguinte deverá ser feito um teste se a aplicação
         // está em dark mode e deverá utilizar o css correto */}
@@ -28,26 +38,17 @@ const DetailCard = () => {
           </div>
           <div className="col-sm-12 col-lg-6">
             <ul className="list-group">
-              <li className="list-group-item">Nombre: {'Nome do Dentista'}</li>
+              <li className="list-group-item">Nombre: {data.name}</li>
               <li className="list-group-item">
-                Apellido: {'Sobrenome do Dentista'}
+                Email: {data.email}
               </li>
               <li className="list-group-item">
-                Usuario: {'Nome de usuário do Dentista'}
+                Teléfono: {data.phone}
+              </li>
+              <li className="list-group-item">
+                Website: {data.website}
               </li>
             </ul>
-            <div className="text-center">
-              {/* //Na linha seguinte deverá ser feito um teste se a aplicação
-              // está em dark mode e deverá utilizado o css correto */}
-              <button
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModal"
-                className={`btn btn-light ${styles.button
-                  }`}
-              >
-                Marcar consulta
-              </button>
-            </div>
           </div>
         </div>
       </section>

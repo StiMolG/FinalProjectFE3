@@ -22,7 +22,7 @@ const Home = () => {
       <div className="card-grid container">
         {data.map((item) =>
          (
-          <Card name={item.name}/>
+          <Card key={item.id} id={item.id} name={item.name}/>
         ))}
       </div>
     </>

@@ -9,10 +9,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 import Home from "./Routes/Home";
 
-import Detail from "./Routes/Detail";
+import Dentist from "./Routes/Dentist";
 import Login from "./Routes/Login";
 import App from "./App";
 import { AppProvider } from "./context/AppContext";
+import { Contact } from "./Routes/Contact";
 
 
 const router = createBrowserRouter([
@@ -25,12 +26,20 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
+        path: "contact",
+        element: <Contact />,
+      },
+      {
         path: "",
         element: <Home />,
       },
       {
-        path: "detail",
-        element: <Detail />,
+        path: "dentist",
+        element: <Dentist />,
+      },
+      {
+        path: "dentist/:id",
+        element: <Dentist />,
       },
       {
         path: "login",
