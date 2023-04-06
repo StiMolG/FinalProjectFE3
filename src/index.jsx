@@ -7,10 +7,11 @@ import {
 import ReactDOM from "react-dom/client";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
-import Home from "./Routes/Home";
 
+import Home from "./Routes/Home";
+import Favs from "./Routes/Favs";
 import Dentist from "./Routes/Dentist";
-import Login from "./Routes/Login";
+
 import App from "./App";
 import { AppProvider } from "./context/AppContext";
 import { Contact } from "./Routes/Contact";
@@ -38,17 +39,13 @@ const router = createBrowserRouter([
         element: <Dentist />,
       },
       {
+        path: "favs",
+        element: <Favs />,
+      },
+      {
         path: "dentist/:id",
         element: <Dentist />,
       },
-      {
-        path: "login",
-        element: <Login />,
-      },
-      // {
-      //   path: "/posts/:id",
-      //   element: <Login />,
-      // },
     ]
   },
   

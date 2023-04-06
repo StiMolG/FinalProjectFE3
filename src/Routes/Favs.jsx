@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import Card from "../Components/Card";
 import { useAppContext } from "../hooks/useAppContext";
 
-const Home = () => {
+const Favs = () => {
 
   const { 
     fetchData,
@@ -21,13 +21,13 @@ const Home = () => {
 
   return (
     <>
-      <h1>Home</h1>
+      <h1>Destacados</h1>
       <div className="card-grid container">
         {
         isFetching ?
         <p>Loading...</p>
         :
-        data.map((item) =>
+        favorites.map((item) =>
          (
           <Card key={item.id} props={item}/>
         ))}
@@ -36,4 +36,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Favs;

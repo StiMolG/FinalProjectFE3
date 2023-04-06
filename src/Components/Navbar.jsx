@@ -22,6 +22,7 @@ const Navbar = () => {
           </NavLink>
           <NavLink className="collapse navbar-collapse justify-content-end" to="/home">Home</NavLink>
           <NavLink to="/contact">Contact</NavLink>
+          <NavLink to="/favs">Destacados</NavLink>
           <button
                   onClick={changeTheme}
                   className={`btn btn-light${styles.btnStyle
