@@ -4,7 +4,7 @@ const dentistReducer = (state, action) => {
       case 'CHANGE_THEME': {
         return {
           ...state,
-          isDarkMode: !state.isDarkMode,
+          stateDark: !state.stateDark,
         };
       }
   

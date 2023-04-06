@@ -3,7 +3,7 @@ import dentistReducer from '../hooks/dentistReducer';
 
 export const initialState = {
   isFetching: false,
-  isDarkMode: false,
+  stateDark: false,
   data: [],
   favorites: JSON.parse(localStorage.getItem('favorites')) || [],
 };

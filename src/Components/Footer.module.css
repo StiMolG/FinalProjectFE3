@@ -5,11 +5,15 @@
 .top {
   text-transform: uppercase;
   padding: 1rem;
-  background: #f21d1d;
+  background: #5f5aff;
   border: none;
   color: white;
   margin-top: 2rem;
   width: 100%;
+}
+
+.top:hover{
+  background: #423cf9;
 }
 
 .footer {
